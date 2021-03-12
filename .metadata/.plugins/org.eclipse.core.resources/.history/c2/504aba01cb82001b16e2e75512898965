@@ -42,7 +42,7 @@ public class AtendimentoResources {
 	 
 	 @DeleteMapping
 	 public ResponseEntity<Atendimento> deletarAtendimento(@RequestBody Atendimento atendimento) {
-		 return new ResponseEntity<Atendimento>(HttpStatus.OK);
+		 Return new ResponseEntity<T>(atendimentoRepository.delete(atendimento),HttpStatus.OK);
 	 }
 	
 }

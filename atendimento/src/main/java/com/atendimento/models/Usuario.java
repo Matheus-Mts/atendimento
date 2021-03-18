@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios implements Serializable{
+public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -84,7 +84,7 @@ public class Usuarios implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuarios other = (Usuarios) obj;
+		Usuario other = (Usuario) obj;
 		if (Modulos == null) {
 			if (other.Modulos != null)
 				return false;

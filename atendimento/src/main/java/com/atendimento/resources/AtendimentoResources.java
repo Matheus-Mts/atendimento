@@ -25,22 +25,22 @@ public class AtendimentoResources {
 	 @Autowired
 	 AtendimentoRepository atendimentoRepository;
 	 
-	 @GetMapping("/atendimentos")
+	 
 	 public List<Atendimento> listaProdutos(){
 		 return atendimentoRepository.findAll();
 	 }
 	 
-	 @GetMapping("/atendimento/{id}")
+	 
 	 public Optional<Atendimento> listaAtendimentooUnico(@PathVariable(value="id") Long id) {
 		 return atendimentoRepository.findById(id);
 	 }
 	 
-	 @PostMapping("/atendimento")
+	 
 	 public Atendimento salvarAtendimentos(@RequestBody Atendimento atendimento) {
 		 return atendimentoRepository.save(atendimento);
 	 }
 	 
-	 @DeleteMapping
+	 
 	 public ResponseEntity<Atendimento> deletarAtendimento(@RequestBody Atendimento atendimento) {
 		 return new ResponseEntity<Atendimento>(HttpStatus.OK);
 	 }

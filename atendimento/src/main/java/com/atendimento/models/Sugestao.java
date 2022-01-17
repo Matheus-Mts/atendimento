@@ -9,18 +9,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entidade sugestão do sistema.
+ *
+ * @author Matheus Santos.
+ * @since 03/09/2021.
+ */
+
 @Entity
 @Table(name = "sugestao")
 public class Sugestao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
+
+	/**
+	 * Id da entidade.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	/**
+	 * descricao da sugestão.
+	 */
 	@Column(name = "descricao_sugestao")
 	private String descricao_sugestao;
+
+	/**
+	 * Método construtor com todos os parâmetros.
+	 * @param id id da entidade
+	 * @param descricao_sugestao descrição da sugestão.
+	 */
+	public Sugestao(long id, String descricao_sugestao) {
+		this.id = id;
+		this.descricao_sugestao = descricao_sugestao;
+	}
+
+	public Sugestao () {}
 
 	public long getId() {
 		return id;

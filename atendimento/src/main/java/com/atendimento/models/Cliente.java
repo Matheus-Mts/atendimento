@@ -1,6 +1,7 @@
 package com.atendimento.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,121 +12,149 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+/**
+ * Entidade cliente do sistema.
+ *
+ * @author Matheus Santos.
+ * @since 03/09/2021.
+ */
+
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	@OneToOne
-	@JoinColumn(name = "id_cliente")
-	private Ca ca;
-	
-	@Column(name = "nome_cliente")
-	private String nome_cliente;
-	
-	@Column(name = "cidade_cliente")
-	private String cidade_cliente;
-	
-	@Column(name = "uf_cliente")
-	private String uf_cliente;
 
-	public long getId() {
-		return id;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	public Ca getCa() {
-		return ca;
-	}
+    /**
+     * Ca do cliente.
+     */
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
+    private Ca ca;
 
-	public void setCa(Ca ca) {
-		this.ca = ca;
-	}
+    /**
+     * Codigo cliente.
+     */
+    @Column(name = "codigo_cliente")
+    private Long codigo_cliente;
 
-	public String getNome_cliente() {
-		return nome_cliente;
-	}
+    /**
+     * Nome do cliente.
+     */
+    @Column(name = "nome_cliente")
+    private String nome_cliente;
 
-	public void setNome_cliente(String nome_cliente) {
-		this.nome_cliente = nome_cliente;
-	}
+    /**
+     * cidade do cliente.
+     */
+    @Column(name = "cidade_cliente")
+    private String cidade_cliente;
 
-	public String getCidade_cliente() {
-		return cidade_cliente;
-	}
+    /**
+     * uf do cliente.
+     */
+    @Column(name = "uf_cliente")
+    private String uf_cliente;
 
-	public void setCidade_cliente(String cidade_cliente) {
-		this.cidade_cliente = cidade_cliente;
-	}
+    /**
+     * Construtor com todos os parametros
+     *
+     * @param id             id da entidade
+     * @param ca             ca docliente
+     * @param nome_cliente   nome do cliente do atendimento
+     * @param cidade_cliente cidade do cliente
+     * @param uf_cliente     uf do cliente
+     */
+    public Cliente(long id, Ca ca, String nome_cliente, String cidade_cliente, String uf_cliente, Long codigo_cliente) {
+        this.id = id;
+        this.ca = ca;
+        this.nome_cliente = nome_cliente;
+        this.cidade_cliente = cidade_cliente;
+        this.uf_cliente = uf_cliente;
+        this.codigo_cliente = codigo_cliente;
+    }
 
-	public String getUf_cliente() {
-		return uf_cliente;
-	}
+    public Cliente() {
+    }
 
-	public void setUf_cliente(String uf_cliente) {
-		this.uf_cliente = uf_cliente;
-	}
+    public long getId() {
+        return id;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ca == null) ? 0 : ca.hashCode());
-		result = prime * result + ((cidade_cliente == null) ? 0 : cidade_cliente.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((nome_cliente == null) ? 0 : nome_cliente.hashCode());
-		result = prime * result + ((uf_cliente == null) ? 0 : uf_cliente.hashCode());
-		return result;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		if (ca == null) {
-			if (other.ca != null)
-				return false;
-		} else if (!ca.equals(other.ca))
-			return false;
-		if (cidade_cliente == null) {
-			if (other.cidade_cliente != null)
-				return false;
-		} else if (!cidade_cliente.equals(other.cidade_cliente))
-			return false;
-		if (id != other.id)
-			return false;
-		if (nome_cliente == null) {
-			if (other.nome_cliente != null)
-				return false;
-		} else if (!nome_cliente.equals(other.nome_cliente))
-			return false;
-		if (uf_cliente == null) {
-			if (other.uf_cliente != null)
-				return false;
-		} else if (!uf_cliente.equals(other.uf_cliente))
-			return false;
-		return true;
-	}
+    public Ca getCa() {
+        return ca;
+    }
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", ca=" + ca + ", nome_cliente=" + nome_cliente + ", cidade_cliente="
-				+ cidade_cliente + ", uf_cliente=" + uf_cliente + "]";
-	}
-	
+    public void setCa(Ca ca) {
+        this.ca = ca;
+    }
+
+    public String getNome_cliente() {
+        return nome_cliente;
+    }
+
+    public void setNome_cliente(String nome_cliente) {
+        this.nome_cliente = nome_cliente;
+    }
+
+    public String getCidade_cliente() {
+        return cidade_cliente;
+    }
+
+    public void setCidade_cliente(String cidade_cliente) {
+        this.cidade_cliente = cidade_cliente;
+    }
+
+    public String getUf_cliente() {
+        return uf_cliente;
+    }
+
+    public void setUf_cliente(String uf_cliente) {
+        this.uf_cliente = uf_cliente;
+    }
+
+    public Long getCodigo_cliente() { return codigo_cliente;  }
+
+    public void setCodigo_cliente(Long codigo_cliente) {  this.codigo_cliente = codigo_cliente;  }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return id == cliente.id &&
+                Objects.equals(ca, cliente.ca) &&
+                Objects.equals(codigo_cliente, cliente.codigo_cliente) &&
+                Objects.equals(nome_cliente, cliente.nome_cliente) &&
+                Objects.equals(cidade_cliente, cliente.cidade_cliente) &&
+                Objects.equals(uf_cliente, cliente.uf_cliente);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, ca, codigo_cliente, nome_cliente, cidade_cliente, uf_cliente);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", ca=" + ca +
+                ", codigo_cliente=" + codigo_cliente +
+                ", nome_cliente='" + nome_cliente + '\'' +
+                ", cidade_cliente='" + cidade_cliente + '\'' +
+                ", uf_cliente='" + uf_cliente + '\'' +
+                '}';
+    }
 
 
 }

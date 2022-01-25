@@ -34,17 +34,17 @@ public class Modulo implements Serializable {
      * Nome do modulo do atendimento.
      */
     @Column(name = "nome_modulo")
-    private String nome_modulo;
+    private String nomeModulo;
 
     /**
      * Método construtor com todos os parametros.
      *
      * @param id          id da entidade.
-     * @param nome_modulo nome do modulo.
+     * @param nomeModulo nome do modulo.
      */
-    public Modulo(long id, String nome_modulo) {
+    public Modulo(long id, String nomeModulo) {
         this.id = id;
-        this.nome_modulo = nome_modulo;
+        this.nomeModulo = nomeModulo;
     }
 
     public Modulo() {}
@@ -57,12 +57,12 @@ public class Modulo implements Serializable {
         this.id = id;
     }
 
-    public String getNome_modulo() {
-        return nome_modulo;
+    public String getNomeModulo() {
+        return nomeModulo;
     }
 
-    public void setNome_modulo(String nome_modulo) {
-        this.nome_modulo = nome_modulo;
+    public void setNomeModulo(String nomeModulo) {
+        this.nomeModulo = nomeModulo;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Modulo implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((nome_modulo == null) ? 0 : nome_modulo.hashCode());
+        result = prime * result + ((nomeModulo == null) ? 0 : nomeModulo.hashCode());
         return result;
     }
 
@@ -85,17 +85,17 @@ public class Modulo implements Serializable {
         Modulo other = (Modulo) obj;
         if (id != other.id)
             return false;
-        if (nome_modulo == null) {
-            if (other.nome_modulo != null)
+        if (nomeModulo == null) {
+            if (other.nomeModulo != null)
                 return false;
-        } else if (!nome_modulo.equals(other.nome_modulo))
+        } else if (!nomeModulo.equals(other.nomeModulo))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Modulo [id=" + id + ", nome_modulo=" + nome_modulo + "]";
+        return "Modulo [id=" + id + ", nome_modulo=" + nomeModulo + "]";
     }
 
 

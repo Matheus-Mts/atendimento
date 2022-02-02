@@ -82,7 +82,7 @@ public class Atendimento implements Serializable {
     /**
      * assunto do atendimento.
      */
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_assunto")
     private Assunto assunto;
 
@@ -121,7 +121,7 @@ public class Atendimento implements Serializable {
     /**
      * sugestão do atendimento.
      */
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_sugestao")
     private Sugestao sugestao;
 

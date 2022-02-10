@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Pos-build') {
+        stage('run') {
             steps{
                     bat "java -jar atendimento.jar"
             }

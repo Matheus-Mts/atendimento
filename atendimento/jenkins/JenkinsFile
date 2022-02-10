@@ -2,10 +2,12 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Pre-build') {
             steps{
                 bat "mvn clean package"
             }
+        }
+        stage('Build') {
             steps{
                     bat "mvn package -Dmaven.test.skip=true"
             }

@@ -2,11 +2,6 @@
 pipeline {
     agent any
     stages {
-        stage('Alinhando pasta') {
-            steps{
-                bat "cd atendimento"
-            }
-        }
 
         stage('Build') {
             steps{
@@ -14,15 +9,9 @@ pipeline {
             }
         }
 
-        stage('Pos-build') {
-            steps{
-                    bat "cd target"
-            }
-        }
-
         stage('run') {
             steps{
-                    bat "java -jar atendimento.jar"
+                    bat "mvn spring-boot:run"
             }
         }
     }

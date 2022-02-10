@@ -2,11 +2,28 @@
 pipeline {
     agent any
     stages {
+        stage('Alinhando pasta') {
+            steps{
+                bat "cd atendimento"
+            }
+        }
+
         stage('Build') {
             steps{
                     bat "mvn package -Dmaven.test.skip=true"
             }
         }
 
+        stage('Pos-build') {
+            steps{
+                    bat "cd target"
+            }
+        }
+
+        stage('Pos-build') {
+            steps{
+                    bat "java -jar atendimento.jar"
+            }
+        }
     }
 }

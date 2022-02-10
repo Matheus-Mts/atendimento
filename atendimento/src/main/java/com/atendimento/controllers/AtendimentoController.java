@@ -24,7 +24,7 @@ public class AtendimentoController {
 		this.atendimentoService = atendimentoService;
 	}
 
-	@GetMapping(value = "/{idUsuario}")
+	@GetMapping(value = "usuario/{idUsuario}")
 	public ResponseEntity<List<Atendimento>> retornaListaAtendimentoUsuario(@PathVariable Long idUsuario) {
 		return atendimentoService.retornaListaAtendimentoUsuario(idUsuario)
 				.map(atendimentos -> ResponseEntity.status(HttpStatus.OK).body(atendimentos))
@@ -43,5 +43,12 @@ public class AtendimentoController {
 		return atendimentoService.salvarAtendimento(atendimento)
 				.map(atendimentoSalvo -> ResponseEntity.status(HttpStatus.CREATED).body(atendimentoSalvo))
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Atendimento> retornarAtendimentoPorID(@PathVariable long id) {
+		return atendimentoService.retornarAtendimentoPorID(id)
+				.map(atendimento -> ResponseEntity.status(HttpStatus.CREATED).body(atendimento))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 }

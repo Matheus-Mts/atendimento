@@ -35,4 +35,8 @@ public class AtendimentoService {
     public Optional<List<Atendimento>> retornarTodosAtendimentos() {
         return Optional.ofNullable(atendimentoRepository.findAll());
     }
+
+    public Optional<Atendimento> retornarAtendimentoPorID(long id) {
+        return atendimentoRepository.findById(id);
+    }
 }

@@ -15,5 +15,5 @@ pipeline {
             }
         }
     }
-    return
+    finished
 }

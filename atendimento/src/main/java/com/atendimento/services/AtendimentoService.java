@@ -1,9 +1,7 @@
 package com.atendimento.services;
 
 import com.atendimento.models.Atendimento;
-import com.atendimento.models.Usuario;
 import com.atendimento.repository.AtendimentoRepository;
-import com.atendimento.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +14,10 @@ public class AtendimentoService {
     @Autowired
     AtendimentoRepository atendimentoRepository;
 
-    @Autowired
-    UsuarioRepository usuarioRepository;
 
-    public AtendimentoService(AtendimentoRepository atendimentoRepository, UsuarioRepository usuarioRepository) {
+
+    public AtendimentoService(AtendimentoRepository atendimentoRepository) {
         this.atendimentoRepository = atendimentoRepository;
-        this.usuarioRepository = usuarioRepository;
-    }
-
-    public Optional<List<Atendimento>> retornaListaAtendimentoUsuario(long idUsuario) {
-       return Optional.ofNullable(atendimentoRepository.findByUsuario(usuarioRepository.findById(idUsuario).get()));
     }
 
     public Optional<Atendimento> salvarAtendimento(Atendimento atendimento) {

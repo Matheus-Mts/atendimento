@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import com.atendimento.models.Atendimento;
 import com.atendimento.repository.AtendimentoRepository;
 
+import javax.servlet.http.HttpServletRequest;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/atendimentos")
@@ -24,12 +26,15 @@ public class AtendimentoController {
 		this.atendimentoService = atendimentoService;
 	}
 
+	/*
 	@GetMapping(value = "usuario/{idUsuario}")
-	public ResponseEntity<List<Atendimento>> retornaListaAtendimentoUsuario(@PathVariable Long idUsuario) {
+	public ResponseEntity<List<Atendimento>> retornaListaAtendimentoUsuario(@PathVariable Long idUsuario, HttpServletRequest request) {
 		return atendimentoService.retornaListaAtendimentoUsuario(idUsuario)
 				.map(atendimentos -> ResponseEntity.status(HttpStatus.OK).body(atendimentos))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
+
+	 */
 
 	@GetMapping
 	public ResponseEntity<List<Atendimento>> retornarTodosAtendimentos() {

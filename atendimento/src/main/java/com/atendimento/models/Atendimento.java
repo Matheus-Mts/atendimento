@@ -110,13 +110,7 @@ public class Atendimento implements Serializable {
     @Column(name = "contato")
     private String contato;
 
-    /**
-     * Usuario do atendimento.
-     */
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    @JsonIgnore
-    private Usuario usuario;
+
 
     /**
      * sugestão do atendimento.
@@ -148,7 +142,7 @@ public class Atendimento implements Serializable {
     public Atendimento(long id, Ca ca, Cliente cliente, Modulo tipo_modulo, String tipo_atendimento, LocalDate data_atendimento,
                        Boolean atendimento_concluido, String observacoes, Boolean cobrar_cliente,
                        Assunto assunto, String descricao_cliente, String atendimento_horarfinal, Boolean encerrado,
-                       String contato, Usuario usuario, Sugestao sugestao) {
+                       String contato,  Sugestao sugestao) {
         this.id = id;
         this.ca = ca;
         this.cliente = cliente;
@@ -163,7 +157,6 @@ public class Atendimento implements Serializable {
         this.atendimento_horarfinal = atendimento_horarfinal;
         this.encerrado = encerrado;
         this.contato = contato;
-        this.usuario = usuario;
         this.sugestao = sugestao;
     }
 
@@ -289,13 +282,6 @@ public class Atendimento implements Serializable {
         this.sugestao = sugestao;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     @Override
     public int hashCode() {

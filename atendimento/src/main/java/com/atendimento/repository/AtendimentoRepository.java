@@ -1,11 +1,11 @@
 package com.atendimento.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.atendimento.models.Atendimento;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface AtendimentoRepository extends JpaRepository<Atendimento, Long> {
+@Repository
+public interface AtendimentoRepository extends RepositoryGenerico<Atendimento, Long> {
 
 }

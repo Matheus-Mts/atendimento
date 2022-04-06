@@ -19,17 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ca")
-public class Ca implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * Id da entidade.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+public class Ca extends EntidadeGenerica {
 
     /**
      * Codigo da ca.
@@ -63,23 +53,12 @@ public class Ca implements Serializable {
      * @param uf_ca uf da ca.
      * @param codigo_ca codigo da ca.
      */
-    public Ca(long id, String nome_ca, String cidade_ca, String uf_ca, Long codigo_ca) {
-        this.id = id;
+    public Ca(Long id, String nome_ca, String cidade_ca, String uf_ca, Long codigo_ca) {
+        super(id);
         this.nome_ca = nome_ca;
         this.cidade_ca = cidade_ca;
         this.uf_ca = uf_ca;
         this.codigo_ca = codigo_ca;
-    }
-
-
-    public Ca() {}
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNome_ca() {
@@ -111,32 +90,12 @@ public class Ca implements Serializable {
     public void setCodigo_ca(long codigo_ca) { this.codigo_ca = codigo_ca;   }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ca ca = (Ca) o;
-        return id == ca.id &&
-                codigo_ca == ca.codigo_ca &&
-                Objects.equals(nome_ca, ca.nome_ca) &&
-                Objects.equals(cidade_ca, ca.cidade_ca) &&
-                Objects.equals(uf_ca, ca.uf_ca);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, codigo_ca, nome_ca, cidade_ca, uf_ca);
-    }
-
-    @Override
     public String toString() {
         return "Ca{" +
-                "id=" + id +
-                ", codigo_ca=" + codigo_ca +
+                "codigo_ca=" + codigo_ca +
                 ", nome_ca='" + nome_ca + '\'' +
                 ", cidade_ca='" + cidade_ca + '\'' +
                 ", uf_ca='" + uf_ca + '\'' +
                 '}';
     }
-
-
 }

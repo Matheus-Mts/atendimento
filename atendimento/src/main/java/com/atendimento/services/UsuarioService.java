@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class UsuarioService extends ServiceGenericoImpl {
+public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;

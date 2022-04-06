@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.atendimento.models.Sugestao;
 
-public interface SugestaoRepository extends JpaRepository<Sugestao, Long> {
+public interface SugestaoRepository extends RepositoryGenerico<Sugestao, Long> {
 
 }

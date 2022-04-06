@@ -2,6 +2,7 @@ package com.atendimento.controllers;
 
 import com.atendimento.models.Modulo;
 import com.atendimento.services.ModuloService;
+import com.atendimento.services.ServiceGenericoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +13,18 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/modulo")
-public class ModuloController  {
+public class ModuloController extends ControllerGenerico<Modulo,Long>  {
 
     @Autowired
     private ModuloService moduloService;
 
-    public ModuloController(ModuloService moduloService) {
-        this.moduloService = moduloService;
+    @Override
+    protected ServiceGenericoImpl<Modulo, Long> getServiceGenerico() {
+        return moduloService;
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Modulo> retornarModulo(@PathVariable Long id ) {
-        return moduloService.retornarModuloPorId(id)
-                .map(modulo -> ResponseEntity.status(HttpStatus.OK).body(modulo))
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public ModuloController(ModuloService moduloService) {
+        this.moduloService = moduloService;
     }
 
     @GetMapping(value = "/nome/{nome_modulo}")
@@ -34,6 +33,4 @@ public class ModuloController  {
                 .map(modulo -> ResponseEntity.status(HttpStatus.OK).body(modulo))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
-
 }

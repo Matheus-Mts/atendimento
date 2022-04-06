@@ -22,13 +22,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente implements Serializable {
+public class Cliente extends EntidadeGenerica {
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     /**
      * Ca do cliente.
@@ -70,24 +65,13 @@ public class Cliente implements Serializable {
      * @param cidade_cliente cidade do cliente
      * @param uf_cliente     uf do cliente
      */
-    public Cliente(long id, Ca ca, String nome_cliente, String cidade_cliente, String uf_cliente, Long codigo_cliente) {
-        this.id = id;
+    public Cliente(Long id, Ca ca, String nome_cliente, String cidade_cliente, String uf_cliente, Long codigo_cliente) {
+        super(id);
         this.ca = ca;
         this.nome_cliente = nome_cliente;
         this.cidade_cliente = cidade_cliente;
         this.uf_cliente = uf_cliente;
         this.codigo_cliente = codigo_cliente;
-    }
-
-    public Cliente() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Ca getCa() {
@@ -127,34 +111,13 @@ public class Cliente implements Serializable {
     public void setCodigo_cliente(Long codigo_cliente) {  this.codigo_cliente = codigo_cliente;  }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return id == cliente.id &&
-                Objects.equals(ca, cliente.ca) &&
-                Objects.equals(codigo_cliente, cliente.codigo_cliente) &&
-                Objects.equals(nome_cliente, cliente.nome_cliente) &&
-                Objects.equals(cidade_cliente, cliente.cidade_cliente) &&
-                Objects.equals(uf_cliente, cliente.uf_cliente);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, ca, codigo_cliente, nome_cliente, cidade_cliente, uf_cliente);
-    }
-
-    @Override
     public String toString() {
         return "Cliente{" +
-                "id=" + id +
-                ", ca=" + ca +
+                "ca=" + ca +
                 ", codigo_cliente=" + codigo_cliente +
                 ", nome_cliente='" + nome_cliente + '\'' +
                 ", cidade_cliente='" + cidade_cliente + '\'' +
                 ", uf_cliente='" + uf_cliente + '\'' +
                 '}';
     }
-
-
 }

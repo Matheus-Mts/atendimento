@@ -1,10 +1,10 @@
 package com.atendimento.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.atendimento.models.Assunto;
+import org.springframework.stereotype.Repository;
 
-public interface AssuntoRepository extends JpaRepository<Assunto, Long>{
+@Repository
+public interface AssuntoRepository extends RepositoryGenerico<Assunto, Long>{
 	
 
 }

@@ -1,9 +1,9 @@
 package com.atendimento.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.atendimento.models.Ca;
+import org.springframework.stereotype.Repository;
 
-public interface CaRepository extends JpaRepository<Ca, Long> {
+@Repository
+public interface CaRepository extends RepositoryGenerico<Ca, Long> {
 
 }

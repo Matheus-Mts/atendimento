@@ -18,16 +18,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ATENDIMENTO")
-public class Atendimento implements Serializable {
+public class Atendimento extends EntidadeGenerica {
 
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * id da entidade.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     /**
      * Ca do cliente do atendimento.
@@ -142,11 +134,11 @@ public class Atendimento implements Serializable {
      * @param usuario                usuario do atendimento
      * @param sugestao               sugestao do atendimento.
      */
-    public Atendimento(long id, Ca ca, Cliente cliente, Modulo tipo_modulo, String tipo_atendimento, LocalDate data_atendimento,
+    public Atendimento(Long id, Ca ca, Cliente cliente, Modulo tipo_modulo, String tipo_atendimento, LocalDate data_atendimento,
                        Boolean atendimento_concluido, String observacoes, Boolean cobrar_cliente,
                        Assunto assunto, String descricao_cliente, String atendimento_horarfinal, Boolean encerrado,
                        String contato,  Sugestao sugestao, UsuarioDTO usuario) {
-        this.id = id;
+        super(id);
         this.ca = ca;
         this.cliente = cliente;
         this.tipo_modulo = tipo_modulo;
@@ -182,16 +174,6 @@ public class Atendimento implements Serializable {
 
     public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
         this.usuarioDTO = usuarioDTO;
-    }
-
-    public Atendimento() {}
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Ca getCa() {
@@ -306,103 +288,10 @@ public class Atendimento implements Serializable {
         this.sugestao = sugestao;
     }
 
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((assunto == null) ? 0 : assunto.hashCode());
-        result = prime * result + (atendimento_concluido ? 1231 : 1237);
-        result = prime * result + ((ca == null) ? 0 : ca.hashCode());
-        result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
-        result = prime * result + (cobrar_cliente ? 1231 : 1237);
-        result = prime * result + ((contato == null) ? 0 : contato.hashCode());
-        result = prime * result + ((data_atendimento == null) ? 0 : data_atendimento.hashCode());
-        result = prime * result + ((descricao_cliente == null) ? 0 : descricao_cliente.hashCode());
-        result = prime * result + (encerrado ? 1231 : 1237);
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((observacoes == null) ? 0 : observacoes.hashCode());
-        result = prime * result + ((sugestao == null) ? 0 : sugestao.hashCode());
-        result = prime * result + ((tipo_atendimento == null) ? 0 : tipo_atendimento.hashCode());
-        result = prime * result + ((tipo_modulo == null) ? 0 : tipo_modulo.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Atendimento other = (Atendimento) obj;
-        if (assunto == null) {
-            if (other.assunto != null)
-                return false;
-        } else if (!assunto.equals(other.assunto))
-            return false;
-        if (atendimento_concluido != other.atendimento_concluido)
-            return false;
-        if (ca == null) {
-            if (other.ca != null)
-                return false;
-        } else if (!ca.equals(other.ca))
-            return false;
-        if (cliente == null) {
-            if (other.cliente != null)
-                return false;
-        } else if (!cliente.equals(other.cliente))
-            return false;
-        if (cobrar_cliente != other.cobrar_cliente)
-            return false;
-        if (contato == null) {
-            if (other.contato != null)
-                return false;
-        } else if (!contato.equals(other.contato))
-            return false;
-        if (data_atendimento == null) {
-            if (other.data_atendimento != null)
-                return false;
-        } else if (!data_atendimento.equals(other.data_atendimento))
-            return false;
-        if (descricao_cliente == null) {
-            if (other.descricao_cliente != null)
-                return false;
-        } else if (!descricao_cliente.equals(other.descricao_cliente))
-            return false;
-        if (encerrado != other.encerrado)
-            return false;
-        if (id != other.id)
-            return false;
-        if (observacoes == null) {
-            if (other.observacoes != null)
-                return false;
-        } else if (!observacoes.equals(other.observacoes))
-            return false;
-        if (sugestao == null) {
-            if (other.sugestao != null)
-                return false;
-        } else if (!sugestao.equals(other.sugestao))
-            return false;
-        if (tipo_atendimento == null) {
-            if (other.tipo_atendimento != null)
-                return false;
-        } else if (!tipo_atendimento.equals(other.tipo_atendimento))
-            return false;
-        if (tipo_modulo == null) {
-            if (other.tipo_modulo != null)
-                return false;
-        } else if (!tipo_modulo.equals(other.tipo_modulo))
-            return false;
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Atendimento{" +
-                "id=" + id +
-                ", ca=" + ca +
+                "ca=" + ca +
                 ", cliente=" + cliente +
                 ", tipo_modulo=" + tipo_modulo +
                 ", tipo_atendimento='" + tipo_atendimento + '\'' +
@@ -419,8 +308,6 @@ public class Atendimento implements Serializable {
                 ", sugestao=" + sugestao +
                 '}';
     }
-
-
 }
 	
 	

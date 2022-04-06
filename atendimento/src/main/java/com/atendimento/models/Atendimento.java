@@ -1,5 +1,6 @@
 package com.atendimento.models;
 
+import com.atendimento.models.dto.UsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.Nullable;
 
@@ -110,7 +111,9 @@ public class Atendimento implements Serializable {
     @Column(name = "contato")
     private String contato;
 
-
+    @OneToOne(cascade=CascadeType.MERGE)
+    @JoinColumn(name = "id_usuario")
+    private UsuarioDTO usuarioDTO;
 
     /**
      * sugestão do atendimento.
@@ -142,7 +145,7 @@ public class Atendimento implements Serializable {
     public Atendimento(long id, Ca ca, Cliente cliente, Modulo tipo_modulo, String tipo_atendimento, LocalDate data_atendimento,
                        Boolean atendimento_concluido, String observacoes, Boolean cobrar_cliente,
                        Assunto assunto, String descricao_cliente, String atendimento_horarfinal, Boolean encerrado,
-                       String contato,  Sugestao sugestao) {
+                       String contato,  Sugestao sugestao, UsuarioDTO usuario) {
         this.id = id;
         this.ca = ca;
         this.cliente = cliente;
@@ -158,6 +161,27 @@ public class Atendimento implements Serializable {
         this.encerrado = encerrado;
         this.contato = contato;
         this.sugestao = sugestao;
+        this.usuarioDTO = usuario;
+    }
+
+    public Boolean getAtendimento_concluido() {
+        return atendimento_concluido;
+    }
+
+    public Boolean getCobrar_cliente() {
+        return cobrar_cliente;
+    }
+
+    public Boolean getEncerrado() {
+        return encerrado;
+    }
+
+    public UsuarioDTO getUsuarioDTO() {
+        return usuarioDTO;
+    }
+
+    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+        this.usuarioDTO = usuarioDTO;
     }
 
     public Atendimento() {}
@@ -376,12 +400,24 @@ public class Atendimento implements Serializable {
 
     @Override
     public String toString() {
-        return "Atendimento [id=" + id + ", ca=" + ca + ", cliente=" + cliente + ", tipo_modulo=" + tipo_modulo
-                + ", tipo_atendimento=" + tipo_atendimento + ", data_atendimento=" + data_atendimento
-                + ", atendimento_concluido=" + atendimento_concluido + ", observacoes=" + observacoes
-                + ", cobrar_cliente=" + cobrar_cliente + ", assunto=" + assunto
-                + ", descricao_cliente=" + descricao_cliente + ", atendimento_horarfinal=" + atendimento_horarfinal
-                + ", encerrado=" + encerrado + ", contato=" + contato + ", sugestao=" + sugestao + "]";
+        return "Atendimento{" +
+                "id=" + id +
+                ", ca=" + ca +
+                ", cliente=" + cliente +
+                ", tipo_modulo=" + tipo_modulo +
+                ", tipo_atendimento='" + tipo_atendimento + '\'' +
+                ", data_atendimento=" + data_atendimento +
+                ", atendimento_concluido=" + atendimento_concluido +
+                ", observacoes='" + observacoes + '\'' +
+                ", cobrar_cliente=" + cobrar_cliente +
+                ", assunto=" + assunto +
+                ", descricao_cliente='" + descricao_cliente + '\'' +
+                ", atendimento_horarfinal='" + atendimento_horarfinal + '\'' +
+                ", encerrado=" + encerrado +
+                ", contato='" + contato + '\'' +
+                ", usuarioDTO=" + usuarioDTO +
+                ", sugestao=" + sugestao +
+                '}';
     }
 
 

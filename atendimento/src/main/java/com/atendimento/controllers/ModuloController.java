@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/modulo")
-public class ModuloController {
+public class ModuloController  {
 
     @Autowired
     private ModuloService moduloService;
@@ -32,4 +34,6 @@ public class ModuloController {
                 .map(modulo -> ResponseEntity.status(HttpStatus.OK).body(modulo))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
+
 }

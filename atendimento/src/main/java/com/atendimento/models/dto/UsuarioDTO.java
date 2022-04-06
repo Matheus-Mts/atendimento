@@ -1,14 +1,35 @@
 package com.atendimento.models.dto;
 
-public class UsuarioDTO {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import java.io.Serializable;
 
+@Entity(name = "usuario")
+public class UsuarioDTO implements Serializable {
+
+    @Id
     private Long id;
-    private String nomeUsuario;
+
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @Column(name = "cpf", unique = true)
+    private String cpf;
+
+    @Transient
     private String senha;
 
-    public UsuarioDTO(Long id, String nomeUsuario, String senha) {
+
+    public UsuarioDTO(Long id, String email, String cpf) {
         this.id = id;
-        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.cpf = cpf;
+    }
+
+    public UsuarioDTO(Long id, String email, String cpf, String senha) {
+        this.email = email;
         this.senha = senha;
     }
 
@@ -22,12 +43,20 @@ public class UsuarioDTO {
         this.id = id;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getSenha() {

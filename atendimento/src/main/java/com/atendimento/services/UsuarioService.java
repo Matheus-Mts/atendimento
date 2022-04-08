@@ -26,9 +26,10 @@ public class UsuarioService {
         this.usuarioRepository.delete(usuarioRepository.findById(id).get());
     }
 
-    public void alterarUsuarioDaFila(UsuarioDTO usuarioDTO) {
+    public Optional<UsuarioDTO> alterarUsuarioDaFila(UsuarioDTO usuarioDTO) {
         if (this.usuarioRepository.findById(usuarioDTO.getId()).isPresent()) {
-            this.usuarioRepository.save(usuarioDTO);
+            return Optional.of(this.usuarioRepository.save(usuarioDTO));
         }
+        return Optional.empty();
     }
 }

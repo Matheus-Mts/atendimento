@@ -155,6 +155,8 @@ public class Atendimento extends EntidadeGenerica {
         this.sugestao = sugestao;
         this.usuarioDTO = usuario;
     }
+    
+    public Atendimento(){}
 
     public Boolean getAtendimento_concluido() {
         return atendimento_concluido;

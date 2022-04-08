@@ -15,6 +15,9 @@ public class EntidadeGenerica implements Serializable {
         this.id = id;
     }
 
+    public EntidadeGenerica() {
+    }
+
     public Long getId() {
         return id;
     }

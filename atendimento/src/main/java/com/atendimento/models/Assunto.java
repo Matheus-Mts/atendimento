@@ -51,6 +51,8 @@ public class Assunto extends EntidadeGenerica {
         this.modulo = modulo;
     }
 
+    public Assunto () {}
+
     //getters and setters.
 
     public String getTipo_assunto() {

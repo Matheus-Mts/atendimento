@@ -3,6 +3,7 @@ package com.atendimento.services;
 import com.atendimento.models.EntidadeGenerica;
 import com.atendimento.repository.RepositoryGenerico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import javassist.NotFoundException;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class ServiceGenericoImpl<T extends EntidadeGenerica, ID extends Serializable> {
 
@@ -23,7 +25,7 @@ public abstract class ServiceGenericoImpl<T extends EntidadeGenerica, ID extends
      * @param objeto objeto a ser salvo.
      * @return {@link T}. objeto salvo.
      */
-    public T salvar(T objeto) {
+    public T salvar(T objeto) throws Exception {
         return getRepositoryGenerico().save(objeto);
     }
 
@@ -49,8 +51,13 @@ public abstract class ServiceGenericoImpl<T extends EntidadeGenerica, ID extends
      *
      * @param id Id do objeto que será deletado.
      */
-    public void delete(ID id) {
-        getRepositoryGenerico().deleteById(id);
+    public Boolean delete(ID id) {
+        if (getRepositoryGenerico().existsById(id)) {
+            getRepositoryGenerico().deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
@@ -74,8 +81,8 @@ public abstract class ServiceGenericoImpl<T extends EntidadeGenerica, ID extends
      * @param id Identificador da entidade.
      * @return {@link T} Retorna um objeto de uma entidade caso exista.
      */
-    public T buscarEntidadePorId(Long id) {
-        return getRepositoryGenerico().findById((ID) id).get();
+    public Optional<T> buscarEntidadePorId(Long id) {
+        return getRepositoryGenerico().findById((ID) id);
     }
 
 

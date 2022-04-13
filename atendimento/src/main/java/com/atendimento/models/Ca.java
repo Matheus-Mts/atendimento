@@ -30,7 +30,7 @@ public class Ca extends EntidadeGenerica {
     /**
      * Nome da ca.
      */
-    @Column(name = "nome_ca")
+    @Column(name = "nome_ca", nullable = false)
     private String nome_ca;
 
     /**
@@ -60,6 +60,14 @@ public class Ca extends EntidadeGenerica {
         this.uf_ca = uf_ca;
         this.codigo_ca = codigo_ca;
     }
+    public Ca(String nome_ca, String cidade_ca, String uf_ca, Long codigo_ca) {
+        this.nome_ca = nome_ca;
+        this.cidade_ca = cidade_ca;
+        this.uf_ca = uf_ca;
+        this.codigo_ca = codigo_ca;
+    }
+
+    public Ca() {}
 
     public String getNome_ca() {
         return nome_ca;

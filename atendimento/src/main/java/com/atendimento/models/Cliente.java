@@ -3,14 +3,7 @@ package com.atendimento.models;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -28,14 +21,14 @@ public class Cliente extends EntidadeGenerica {
     /**
      * Ca do cliente.
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_cliente")
     private Ca ca;
 
     /**
      * Codigo cliente.
      */
-    @Column(name = "codigo_cliente")
+    @Column(name = "codigo_cliente", nullable = false)
     private Long codigo_cliente;
 
     /**
@@ -73,6 +66,18 @@ public class Cliente extends EntidadeGenerica {
         this.uf_cliente = uf_cliente;
         this.codigo_cliente = codigo_cliente;
     }
+
+    public Cliente(Ca ca, String nome_cliente, String cidade_cliente, String uf_cliente, Long codigo_cliente) {
+        this.ca = ca;
+        this.nome_cliente = nome_cliente;
+        this.cidade_cliente = cidade_cliente;
+        this.uf_cliente = uf_cliente;
+        this.codigo_cliente = codigo_cliente;
+    }
+
+
+
+    public Cliente() {}
 
     public Ca getCa() {
         return ca;

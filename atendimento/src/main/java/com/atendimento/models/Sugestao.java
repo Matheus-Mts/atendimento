@@ -38,6 +38,8 @@ public class Sugestao extends EntidadeGenerica {
 		this.descricao_sugestao = descricao_sugestao;
 	}
 
+	public Sugestao(){}
+
 	public String getDescricao_sugestao() {
 		return descricao_sugestao;
 	}

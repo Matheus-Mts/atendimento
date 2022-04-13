@@ -10,4 +10,6 @@ import java.io.Serializable;
 @NoRepositoryBean
 public interface RepositoryGenerico <T extends EntidadeGenerica, ID extends Serializable> extends JpaRepository<T,ID>,
         PagingAndSortingRepository<T,ID> {
+
+
 }

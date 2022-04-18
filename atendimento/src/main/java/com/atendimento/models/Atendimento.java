@@ -75,7 +75,7 @@ public class Atendimento extends EntidadeGenerica {
     /**
      * assunto do atendimento.
      */
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_assunto")
     private Assunto assunto;
 
@@ -104,13 +104,13 @@ public class Atendimento extends EntidadeGenerica {
     private String contato;
 
     @OneToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioDTO usuarioDTO;
 
     /**
      * sugestão do atendimento.
      */
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_sugestao")
     private Sugestao sugestao;
 

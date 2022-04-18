@@ -32,4 +32,8 @@ public class UsuarioService {
         }
         return Optional.empty();
     }
+
+    public Optional<UsuarioDTO> verificarExistenciaUsuarioAtendimento(Long id) {
+        return this.usuarioRepository.findById(id);
+    }
 }

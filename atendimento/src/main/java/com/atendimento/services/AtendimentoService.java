@@ -13,7 +13,10 @@ import java.util.Optional;
 public class AtendimentoService extends ServiceGenericoImpl<Atendimento,Long> {
 
     @Autowired
-    AtendimentoRepository atendimentoRepository;
+    private AtendimentoRepository atendimentoRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
 
     @Override
@@ -26,7 +29,9 @@ public class AtendimentoService extends ServiceGenericoImpl<Atendimento,Long> {
     }
 
     public Optional<Atendimento> salvarAtendimento(Atendimento atendimento) {
-        return Optional.ofNullable(atendimentoRepository.save(atendimento));
+        return ((usuarioService.verificarExistenciaUsuarioAtendimento(atendimento.getUsuarioDTO().getId()).isPresent())) ?
+                Optional.ofNullable(atendimentoRepository.save(atendimento)) :
+                Optional.empty();
     }
 
     public Optional<List<Atendimento>> retornarTodosAtendimentos() {

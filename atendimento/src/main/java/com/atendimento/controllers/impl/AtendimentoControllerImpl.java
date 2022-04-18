@@ -34,10 +34,11 @@ public class AtendimentoControllerImpl implements ControllerGenerico<Atendimento
 	public AtendimentoControllerImpl(AtendimentoService atendimentoService) {
 		this.atendimentoService = atendimentoService;
 	}
+
 	@PostMapping
 	public ResponseEntity<Atendimento> salvar(@RequestBody Atendimento objeto) {
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(getServiceGenerico().salvar(objeto));
+			return ResponseEntity.status(HttpStatus.CREATED).body(atendimentoService.salvarAtendimento(objeto).get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

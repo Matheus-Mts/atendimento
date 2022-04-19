@@ -39,6 +39,7 @@ public class Modulo extends EntidadeGenerica {
         super(id);
         this.nomeModulo = nomeModulo;
     }
+    public Modulo(){}
 
     public String getNomeModulo() {
         return nomeModulo;

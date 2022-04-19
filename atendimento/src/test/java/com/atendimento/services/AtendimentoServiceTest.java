@@ -67,7 +67,7 @@ class AtendimentoServiceTest {
     }
 
     @Test
-    void salvarAtendimento() {
+    void salvarAtendimento() throws Exception {
         Mockito.doReturn(atendimento).when(atendimentoRepository).save(atendimento);
         Atendimento response = atendimentoService.salvar(atendimento);
         Assertions.assertNotNull(response);

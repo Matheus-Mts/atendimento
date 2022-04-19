@@ -45,7 +45,7 @@ public class Atendimento extends EntidadeGenerica {
     /**
      * tipo do atendimento.
      */
-    @Column(name = "tipo_atendimento")
+    @Column(name = "tipo_atendimento", nullable = false)
     private String tipo_atendimento;
 
     /**
@@ -75,7 +75,7 @@ public class Atendimento extends EntidadeGenerica {
     /**
      * assunto do atendimento.
      */
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_assunto")
     private Assunto assunto;
 
@@ -104,13 +104,13 @@ public class Atendimento extends EntidadeGenerica {
     private String contato;
 
     @OneToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioDTO usuarioDTO;
 
     /**
      * sugestão do atendimento.
      */
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_sugestao")
     private Sugestao sugestao;
 
